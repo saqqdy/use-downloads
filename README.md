@@ -37,24 +37,24 @@ $ yarn add use-downloads
 ### General use
 
 ```js
-import useDownloads from 'use-downloads'
+import { download } from 'use-downloads'
 
-useDownloads('url', options)
+download('url', options)
 ```
 
 2. by require
 
 ```js
-const useDownloads = require('use-downloads')
+const { download } = require('use-downloads')
 
-useDownloads('url', options)
+download('url', options)
 ```
 
 ### Use CDN resource
 
 ```html
 <!-- head -->
-<script src="https://unpkg.com/use-downloads@1.0.0/dist/use-downloads.global.prod.js"></script>
+<script src="https://unpkg.com/use-downloads@1.0.0/dist/index.global.prod.js"></script>
 ```
 
 ## Support & Issues
@@ -73,8 +73,8 @@ Please open an issue [here](https://github.com/saqqdy/use-downloads/issues).
 [codecov-url]: https://codecov.io/github/saqqdy/use-downloads?branch=master
 [download-image]: https://img.shields.io/npm/dm/use-downloads.svg?style=flat-square
 [download-url]: https://npmjs.org/package/use-downloads
-[gzip-image]: http://img.badgesize.io/https://unpkg.com/use-downloads/dist/use-downloads.global.prod.js?compression=gzip&label=gzip%20size:%20JS
-[gzip-url]: http://img.badgesize.io/https://unpkg.com/use-downloads/dist/use-downloads.global.prod.js?compression=gzip&label=gzip%20size:%20JS
+[gzip-image]: http://img.badgesize.io/https://unpkg.com/use-downloads/dist/index.global.prod.js?compression=gzip&label=gzip%20size:%20JS
+[gzip-url]: http://img.badgesize.io/https://unpkg.com/use-downloads/dist/index.global.prod.js?compression=gzip&label=gzip%20size:%20JS
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE
 [sonar-image]: https://sonarcloud.io/api/project_badges/quality_gate?project=saqqdy_use-downloads

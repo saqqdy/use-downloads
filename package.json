@@ -3,18 +3,18 @@
 	"description": "A js utilities that contains all the methods for downloading files",
 	"version": "1.0.0",
 	"packageManager": "pnpm@8.5.1",
-	"main": "dist/use-downloads.cjs.js",
-	"module": "dist/use-downloads.esm-bundler.js",
-	"browser": "dist/use-downloads.esm-browser.js",
-	"unpkg": "dist/use-downloads.global.js",
-	"jsdelivr": "dist/use-downloads.global.js",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.esm-bundler.js",
+	"browser": "dist/index.esm-browser.js",
+	"unpkg": "dist/index.global.js",
+	"jsdelivr": "dist/index.global.js",
 	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"module": "./dist/use-downloads.esm-bundler.js",
-			"require": "./dist/use-downloads.cjs.js",
-			"import": "./dist/use-downloads.mjs"
+			"module": "./dist/index.esm-bundler.js",
+			"require": "./dist/index.cjs.js",
+			"import": "./dist/index.mjs"
 		},
 		"./*": "./*"
 	},
@@ -32,7 +32,7 @@
 		"gen:version": "tscjs scripts/version",
 		"tag:version": "tscjs scripts/tag",
 		"build": "run-s clean build:{bundle,types} roll-types",
-		"build:bundle": "rollup -c build/rollup.config.ts --configPlugin @rollup/plugin-typescript",
+		"build:bundle": "tscjs scripts/build",
 		"build:types": "tsc -p src/tsconfig.json",
 		"build:docs": "rm-all docs && typedoc && prettier --write \"**/*.md\"",
 		"deploy": "sh scripts/deploy.sh",
@@ -49,18 +49,20 @@
 		"prettier": "prettier --write \"**/*.{js,ts,jsx,tsx,yml,json,md}\"",
 		"pub.bak": "git add . && git commit -m $npm_package_version && git pull && git push"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@babel/core": "^7.21.8",
 		"@babel/preset-env": "^7.21.5",
 		"@babel/preset-typescript": "^7.21.5",
 		"@eslint-sets/eslint-config-ts": "^5.2.0",
 		"@microsoft/api-extractor": "^7.34.9",
+		"@node-kit/extra.fs": "^2.5.1",
 		"@rollup/plugin-babel": "^6.0.3",
 		"@rollup/plugin-commonjs": "^25.0.0",
 		"@rollup/plugin-node-resolve": "^15.0.2",
+		"@rollup/plugin-replace": "^5.0.2",
 		"@rollup/plugin-terser": "^0.4.3",
 		"@rollup/plugin-typescript": "^11.1.1",
+		"@types/activex-excel": "^14.0.6",
 		"@types/babel__core": "^7.20.0",
 		"@types/node": "^20.2.0",
 		"core-js": "^3.30.2",
@@ -80,9 +82,6 @@
 		"typescript": "^5.0.4",
 		"zx": "^7.2.2"
 	},
-	"peerDependencies": {
-		"core-js": ">= 3"
-	},
 	"engines": {
 		"node": ">=12.20"
 	},
@@ -98,11 +97,10 @@
 	},
 	"keywords": [
 		"use-downloads",
-		"es6",
-		"javascript",
-		"js library",
-		"js lib",
-		"js tools",
+		"download",
+		"use-download",
+		"download-kit",
+		"download-all",
 		"saqqdy"
 	],
 	"license": "MIT",

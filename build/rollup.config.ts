@@ -5,8 +5,9 @@ import commonjs from '@rollup/plugin-commonjs'
 import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
 import filesize from 'rollup-plugin-filesize'
+import replace from '@rollup/plugin-replace'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { banner, extensions, reporter } from './config'
+import { banner, extensions, reporter, version } from './config'
 
 export interface Config {
 	input: string
@@ -32,14 +33,14 @@ export interface Options extends RollupOptions {
 const configs: Config[] = [
 	{
 		input: 'src/index.ts',
-		file: 'dist/use-downloads.esm-browser.js',
+		file: 'dist/index.esm-browser.js',
 		format: 'es',
 		browser: true,
 		env: 'development'
 	},
 	{
 		input: 'src/index.ts',
-		file: 'dist/use-downloads.esm-browser.prod.js',
+		file: 'dist/index.esm-browser.prod.js',
 		format: 'es',
 		browser: true,
 		minify: true,
@@ -47,32 +48,32 @@ const configs: Config[] = [
 	},
 	{
 		input: 'src/index.ts',
-		file: 'dist/use-downloads.esm-bundler.js',
+		file: 'dist/index.esm-bundler.js',
 		format: 'es',
 		env: 'development'
 	},
+	// {
+	// 	input: 'src/index.ts',
+	// 	file: 'dist/index.mjs',
+	// 	format: 'es',
+	// 	env: 'development'
+	// },
 	{
-		input: 'src/index.ts',
-		file: 'dist/use-downloads.mjs',
-		format: 'es',
-		env: 'development'
-	},
-	{
-		input: 'src/index.ts',
-		file: 'dist/use-downloads.global.js',
+		input: 'src/index.default.ts',
+		file: 'dist/index.global.js',
 		format: 'iife',
 		env: 'development'
 	},
 	{
-		input: 'src/index.ts',
-		file: 'dist/use-downloads.global.prod.js',
+		input: 'src/index.default.ts',
+		file: 'dist/index.global.prod.js',
 		format: 'iife',
 		minify: true,
 		env: 'production'
 	},
 	{
-		input: 'src/index.ts',
-		file: 'dist/use-downloads.cjs.js',
+		input: 'src/index.default.ts',
+		file: 'dist/index.cjs.js',
 		format: 'cjs',
 		env: 'development'
 	}
@@ -112,14 +113,21 @@ function createEntry(config: Config) {
 	if (isGlobalBuild || config.browser) _config.output.banner = banner
 
 	if (isGlobalBuild) {
-		_config.output.name = _config.output.name || 'useDownloads'
+		_config.output.name = _config.output.name || 'download'
 	}
 
 	if (!isGlobalBuild) {
 		_config.external.push('core-js')
 	}
 
-	_config.plugins.push(nodeResolve(), commonjs())
+	_config.plugins.push(
+		replace({
+			preventAssignment: true,
+			__VERSION__: version
+		}),
+		nodeResolve(),
+		commonjs()
+	)
 
 	if (config.transpile !== false) {
 		!isTranspiled &&

@@ -16,6 +16,9 @@ devDependencies:
   '@microsoft/api-extractor':
     specifier: ^7.34.9
     version: 7.34.9(@types/node@20.2.0)
+  '@node-kit/extra.fs':
+    specifier: ^2.5.1
+    version: 2.5.1
   '@rollup/plugin-babel':
     specifier: ^6.0.3
     version: 6.0.3(@babel/core@7.21.8)(@types/babel__core@7.20.0)(rollup@3.22.0)
@@ -25,12 +28,18 @@ devDependencies:
   '@rollup/plugin-node-resolve':
     specifier: ^15.0.2
     version: 15.0.2(rollup@3.22.0)
+  '@rollup/plugin-replace':
+    specifier: ^5.0.2
+    version: 5.0.2(rollup@3.22.0)
   '@rollup/plugin-terser':
     specifier: ^0.4.3
     version: 0.4.3(rollup@3.22.0)
   '@rollup/plugin-typescript':
     specifier: ^11.1.1
     version: 11.1.1(rollup@3.22.0)(tslib@2.5.2)(typescript@5.0.4)
+  '@types/activex-excel':
+    specifier: ^14.0.6
+    version: 14.0.6
   '@types/babel__core':
     specifier: ^7.20.0
     version: 7.20.0
@@ -1777,6 +1786,20 @@ packages:
       rollup: 3.22.0
     dev: true
 
+  /@rollup/plugin-replace@5.0.2(rollup@3.22.0):
+    resolution: {integrity: sha512-M9YXNekv/C/iHHK+cvORzfRYfPbq0RDD8r0G+bMiTXjNGKulPnCT9O3Ss46WfhI6ZOCgApOP7xAdmCQJ+U2LAA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2(rollup@3.22.0)
+      magic-string: 0.27.0
+      rollup: 3.22.0
+    dev: true
+
   /@rollup/plugin-terser@0.4.3(rollup@3.22.0):
     resolution: {integrity: sha512-EF0oejTMtkyhrkwCdg0HJ0IpkcaVg1MMSf2olHb2Jp+1mnLM04OhjpJWGma4HobiDTF0WCyViWuvadyE9ch2XA==}
     engines: {node: '>=14.0.0'}
@@ -1882,6 +1905,66 @@ packages:
     dependencies:
       '@tufjs/canonical-json': 1.0.0
       minimatch: 9.0.0
+    dev: true
+
+  /@types/activex-adodb@6.1.8:
+    resolution: {integrity: sha512-/4jPRllMrr92mtN6CHnjAo2eI1eNBmxFdlmQVn2g1LLphSzwIc0OZ8bYvmXDYuDRBcSY/PDlJphPsRzZM3iVug==}
+    dependencies:
+      '@types/activex-interop': 0.0.3
+      activex-helpers: 1.0.3
+    dev: true
+
+  /@types/activex-dao@16.0.3:
+    resolution: {integrity: sha512-QnA7b0sqsdv2yGF9JYAtMpbylqyadbq453Uywdqf1UxPRexFR5cLczt0zY1Tib5gS5c3b3/kTZN3eWWgKDvfKw==}
+    dependencies:
+      '@types/activex-interop': 0.0.3
+      activex-helpers: 1.0.3
+    dev: true
+
+  /@types/activex-excel@14.0.6:
+    resolution: {integrity: sha512-cKwoiC3Ee7DHux5FXGeQlfS7oNoCZSMpHX4/g9y8i8ZsUVEn0wQydrfT/dakCI0CUCe6RJFMNQUCR31So2hdfg==}
+    dependencies:
+      '@types/activex-adodb': 6.1.8
+      '@types/activex-dao': 16.0.3
+      '@types/activex-office': 16.0.3
+      '@types/activex-stdole': 2.0.5
+      '@types/activex-vbide': 14.0.3
+      activex-helpers: 1.0.3
+    dev: true
+
+  /@types/activex-interop@0.0.3:
+    resolution: {integrity: sha512-RmOaiOBqyym0g2HcCRoqr2w9fK8QwL7x8b/855N4saqGfplZ1Rxiktn9t9I6ogwomSGGnMceB8ShX5vQ63Zriw==}
+    dev: true
+
+  /@types/activex-office@16.0.3:
+    resolution: {integrity: sha512-gKFgY6k2COnxLiJ/pctK6pUKtFLOuGZ36+BBGb/gRxgyHDyA235TbLhYj8v9rnBZfRb9tVMHQk6qQGu6uLz3gA==}
+    dependencies:
+      '@types/activex-outlook': 14.0.5
+      '@types/activex-stdole': 2.0.5
+      activex-helpers: 1.0.3
+    dev: true
+
+  /@types/activex-outlook@14.0.5:
+    resolution: {integrity: sha512-COs6Ob/zsfojLIhV7WZjMyPJZBsIp98VJ3SS8RohZWkpDSdBI9TOsXPEQNnpRv8PerqMtMqljBzP/E4Mur9JYQ==}
+    dependencies:
+      '@types/activex-interop': 0.0.3
+      '@types/activex-office': 16.0.3
+      '@types/activex-stdole': 2.0.5
+      activex-helpers: 1.0.3
+    dev: true
+
+  /@types/activex-stdole@2.0.5:
+    resolution: {integrity: sha512-QpHiujdEIDKfEH4oCa0fRu6C0V7AE8Ho+yJz5k7Guhwu/AiykolRgstqE7Ch7Bnl5ssG6aS1TaR2yBbXuYzOfw==}
+    dependencies:
+      '@types/activex-interop': 0.0.3
+      activex-helpers: 1.0.3
+    dev: true
+
+  /@types/activex-vbide@14.0.3:
+    resolution: {integrity: sha512-jjTf1RRMIqivYVu48TcYZ01YsniQEx7FbfPNjHnhqAjT+36RBY5Pw+GhnAZWctik2a7RmgT6co/+YPcbcVuRMw==}
+    dependencies:
+      '@types/activex-office': 16.0.3
+      activex-helpers: 1.0.3
     dev: true
 
   /@types/argparse@1.0.38:
@@ -2134,6 +2217,10 @@ packages:
     resolution: {integrity: sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
+
+  /activex-helpers@1.0.3:
+    resolution: {integrity: sha512-8xRCG4h5CJIcgV26EXWVfeaNxmtIV6+mhInKKF9SSP5xGKdFlUykIF5881SbDPD5d7UBo34CbMdyk9SGbMFC/w==}
     dev: true
 
   /agent-base@6.0.2:
