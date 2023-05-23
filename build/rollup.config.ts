@@ -86,10 +86,6 @@ function createEntries() {
 function createEntry(config: Config) {
 	const isGlobalBuild = config.format === 'iife'
 	const isTypeScript = config.input.endsWith('.ts')
-	const isTranspiled =
-		config.file.endsWith('bundler.js') ||
-		config.file.endsWith('browser.js') ||
-		config.file.endsWith('prod.js')
 
 	const _config: Options = {
 		external: [],
@@ -130,14 +126,13 @@ function createEntry(config: Config) {
 	)
 
 	if (config.transpile !== false) {
-		!isTranspiled &&
-			_config.plugins.push(
-				babel({
-					babelHelpers: 'bundled',
-					extensions,
-					exclude: [/node_modules[\\/]core-js/]
-				})
-			)
+		_config.plugins.push(
+			babel({
+				babelHelpers: 'bundled',
+				extensions,
+				exclude: [/node_modules[\\/]core-js/]
+			})
+		)
 		isTypeScript &&
 			_config.plugins.push(
 				typescript({

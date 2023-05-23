@@ -1,7 +1,7 @@
 {
 	"name": "use-downloads",
 	"description": "A js utilities that contains all the methods for downloading files",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"packageManager": "pnpm@8.5.1",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.esm-bundler.js",
@@ -31,9 +31,9 @@
 	"scripts": {
 		"gen:version": "tscjs scripts/version",
 		"tag:version": "tscjs scripts/tag",
-		"build": "run-s clean build:{bundle,types} roll-types",
+		"build": "run-s clean build:{bundle,types}",
 		"build:bundle": "tscjs scripts/build",
-		"build:types": "tsc -p src/tsconfig.json",
+		"build:types": "tsc -p src/tsconfig.json && pnpm roll-types",
 		"build:docs": "rm-all docs && typedoc && prettier --write \"**/*.md\"",
 		"deploy": "sh scripts/deploy.sh",
 		"roll-types": "api-extractor run && rm-all temp",
@@ -98,6 +98,7 @@
 	"keywords": [
 		"use-downloads",
 		"download",
+		"frontend",
 		"use-download",
 		"download-kit",
 		"download-all",
