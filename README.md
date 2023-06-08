@@ -17,6 +17,8 @@ A js utilities that contains all the methods for downloading files
 
 <div style="text-align: center; margin-bottom: 20px;" align="center">
 
+## This project has been moved to [https://github.com/saqqdy/uni-use](https://github.com/saqqdy/uni-use/tree/master/packages/use-downloads#readme)
+
 </div>
 
 ## Installing
